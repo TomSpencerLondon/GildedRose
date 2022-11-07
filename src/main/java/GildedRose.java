@@ -68,7 +68,7 @@ public class GildedRose {
               }
             }
           } else {
-            items.get(i).setQuality(items.get(i).getQuality() - items.get(i).getQuality());
+            items.get(i).setQuality(0);
           }
         } else {
           if (items.get(i).getQuality() < 50) {
