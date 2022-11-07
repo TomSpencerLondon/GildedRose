@@ -4,6 +4,7 @@ import java.util.List;
 
 public class GildedRose {
 
+  private static final int MAXIMUM_QUALITY = 50;
   private static List<Item> items = null;
 
   /**
@@ -26,7 +27,6 @@ public class GildedRose {
     System.out.println(items);
   }
 
-
   public static void updateQuality(List<Item> items) {
     for (Item item : items) {
       updateItem(item);
@@ -39,38 +39,18 @@ public class GildedRose {
     }
 
     if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
-      if (item.getQuality() < 50) {
-        item.setQuality(item.getQuality() + 1);
-
-        if (item.getSellIn() < 11) {
-          if (item.getQuality() < 50) {
-            item.setQuality(item.getQuality() + 1);
-          }
-        }
-
-        if (item.getSellIn() < 6) {
-          if (item.getQuality() < 50) {
-            item.setQuality(item.getQuality() + 1);
-          }
-        }
-      }
-
-      item.setSellIn(item.getSellIn() - 1);
-
-      if (item.getSellIn() < 0) {
-        item.setQuality(0);
-      }
+      updateBackstagePass(item);
     } else {
       if ("Aged Brie".equals(item.getName())) {
-        if (item.getQuality() < 50) {
-          item.setQuality(item.getQuality() + 1);
+        if (item.getQuality() < MAXIMUM_QUALITY) {
+          incrementQuality(item);
         }
 
-        item.setSellIn(item.getSellIn() - 1);
+        decrementSellin(item);
 
         if (item.getSellIn() < 0) {
-          if (item.getQuality() < 50) {
-            item.setQuality(item.getQuality() + 1);
+          if (item.getQuality() < MAXIMUM_QUALITY) {
+            incrementQuality(item);
           }
         }
       } else {
@@ -78,7 +58,7 @@ public class GildedRose {
           item.setQuality(item.getQuality() - 1);
         }
 
-        item.setSellIn(item.getSellIn() - 1);
+        decrementSellin(item);
 
         if (item.getSellIn() < 0) {
           if (item.getQuality() > 0) {
@@ -87,6 +67,36 @@ public class GildedRose {
         }
       }
     }
+  }
+
+  private static void updateBackstagePass(Item item) {
+    if (item.getSellIn() < 0) {
+      item.setQuality(0);
+    } else if (item.getQuality() < MAXIMUM_QUALITY) {
+      incrementQuality(item);
+
+      if (item.getSellIn() <= 10) {
+        if (item.getQuality() < MAXIMUM_QUALITY) {
+          incrementQuality(item);
+        }
+      }
+
+      if (item.getSellIn() <= 5) {
+        if (item.getQuality() < MAXIMUM_QUALITY) {
+          incrementQuality(item);
+        }
+      }
+    }
+
+    decrementSellin(item);
+  }
+
+  private static void decrementSellin(Item item) {
+    item.setSellIn(item.getSellIn() - 1);
+  }
+
+  private static void incrementQuality(Item item) {
+    item.setQuality(item.getQuality() + 1);
   }
 
 }

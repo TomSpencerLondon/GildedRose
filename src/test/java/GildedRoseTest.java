@@ -20,7 +20,7 @@ public class GildedRoseTest {
 		items.add(new Item("Elixir of the Mongoose", 1, -1));
 		items.add(new Item("Aged Brie", 1, 51));
 		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20));
-		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 51));
+		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50));
 		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49));
 		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49));
 		items.add(new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48));
