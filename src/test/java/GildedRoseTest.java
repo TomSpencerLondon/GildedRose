@@ -3,14 +3,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.approvaltests.strings.Printable;
 import org.junit.jupiter.api.Test;
 
 
 public class GildedRoseTest {
 
 	@Test
-	public void testTheTruth() {
+	public void acceptanceTest() {
 		List<Item> items = new ArrayList<>();
 		items.add(new Item("+5 Dexterity Vest", 10, 20));
 		items.add(new Item("Aged Brie", 2, 0));

@@ -7,7 +7,6 @@ Item - Item that GildedRose sells
 Sellin - number of days we have to sell the item
 Quality - how valuable an item is
 
-
 Rules for Items:
 - Once sell by date passed Quality degrades twice as fast
 - Quality of an item is never negative
