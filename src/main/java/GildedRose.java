@@ -34,37 +34,45 @@ public class GildedRose {
   }
 
   private static void updateItem(Item item) {
-    if ("Sulfuras, Hand of Ragnaros".equals(item.getName())) {
-      return;
+    switch (item.getName()) {
+      case "Sulfuras, Hand of Ragnaros":
+        return;
+      case "Backstage passes to a TAFKAL80ETC concert":
+        updateBackstagePass(item);
+        break;
+      case "Aged Brie":
+        updateAgedBrie(item);
+        break;
+      default:
+        updateNormalItem(item);
+        break;
+    }
+  }
+
+  private static void updateNormalItem(Item item) {
+    if (item.getQuality() > 0) {
+      item.setQuality(item.getQuality() - 1);
     }
 
-    if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
-      updateBackstagePass(item);
-    } else {
-      if ("Aged Brie".equals(item.getName())) {
-        if (item.getQuality() < MAXIMUM_QUALITY) {
-          incrementQuality(item);
-        }
+    decrementSellin(item);
 
-        decrementSellin(item);
+    if (item.getSellIn() < 0) {
+      if (item.getQuality() > 0) {
+        item.setQuality(item.getQuality() - 1);
+      }
+    }
+  }
 
-        if (item.getSellIn() < 0) {
-          if (item.getQuality() < MAXIMUM_QUALITY) {
-            incrementQuality(item);
-          }
-        }
-      } else {
-        if (item.getQuality() > 0) {
-          item.setQuality(item.getQuality() - 1);
-        }
+  private static void updateAgedBrie(Item item) {
+    if (item.getQuality() < MAXIMUM_QUALITY) {
+      incrementQuality(item);
+    }
 
-        decrementSellin(item);
+    decrementSellin(item);
 
-        if (item.getSellIn() < 0) {
-          if (item.getQuality() > 0) {
-            item.setQuality(item.getQuality() - 1);
-          }
-        }
+    if (item.getSellIn() < 0) {
+      if (item.getQuality() < MAXIMUM_QUALITY) {
+        incrementQuality(item);
       }
     }
   }
