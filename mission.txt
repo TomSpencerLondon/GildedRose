@@ -1,0 +1,20 @@
+Mission
+Overall: Add Conjured item type that degrades in Quality twice as fast as normal items
+("Conjured" items degrade in Quality twice as fast as normal items)
+
+Ubiquitous language
+Item - Item that GildedRose sells
+Sellin - number of days we have to sell the item
+Quality - how valuable an item is
+
+
+Rules for Items:
+- Once sell by date passed Quality degrades twice as fast
+- Quality of an item is never negative
+- Aged Brie Increases in quality
+- Quality is always between 0 - 50 inclusive
+- Sulfuras never decreases in Quality and never loses sellin
+- Backstage pass increases in quality - increase depends on sellin:
+  - 10 days or less add 2 to quality
+  - 5 days or less add 3 to quality
+  - sellin zero => quality zero
