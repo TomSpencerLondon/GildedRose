@@ -36,6 +36,12 @@ public class GildedRose {
   public static void updateConjured(Item item) {
     decrementQualityBy(item, 2);
     decrementSellin(item);
+
+    if (item.getSellIn() < 0) {
+      if (item.getQuality() > 0) {
+        decrementQualityBy(item, 2);
+      }
+    }
   }
 
   private static void updateItem(Item item) {
