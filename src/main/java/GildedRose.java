@@ -51,16 +51,20 @@ public class GildedRose {
 
   private static void updateNormalItem(Item item) {
     if (item.getQuality() > 0) {
-      item.setQuality(item.getQuality() - 1);
+      decrementQuality(item);
     }
 
     decrementSellin(item);
 
     if (item.getSellIn() < 0) {
       if (item.getQuality() > 0) {
-        item.setQuality(item.getQuality() - 1);
+        decrementQuality(item);
       }
     }
+  }
+
+  private static void decrementQuality(Item item) {
+    item.setQuality(item.getQuality() - 1);
   }
 
   private static void updateAgedBrie(Item item) {
