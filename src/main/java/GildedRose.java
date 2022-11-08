@@ -33,6 +33,11 @@ public class GildedRose {
     }
   }
 
+  public static void updateConjured(Item item) {
+    decrementQualityBy(item, 2);
+    decrementSellin(item);
+  }
+
   private static void updateItem(Item item) {
     switch (item.getName()) {
       case "Sulfuras, Hand of Ragnaros":
@@ -51,20 +56,16 @@ public class GildedRose {
 
   private static void updateNormalItem(Item item) {
     if (item.getQuality() > 0) {
-      decrementQuality(item);
+      decrementQualityBy(item, 1);
     }
 
     decrementSellin(item);
 
     if (item.getSellIn() < 0) {
       if (item.getQuality() > 0) {
-        decrementQuality(item);
+        decrementQualityBy(item, 1);
       }
     }
-  }
-
-  private static void decrementQuality(Item item) {
-    item.setQuality(item.getQuality() - 1);
   }
 
   private static void updateAgedBrie(Item item) {
@@ -111,4 +112,7 @@ public class GildedRose {
     item.setQuality(item.getQuality() + 1);
   }
 
+  private static void decrementQualityBy(Item item, int amount) {
+    item.setQuality(item.getQuality() - amount);
+  }
 }
